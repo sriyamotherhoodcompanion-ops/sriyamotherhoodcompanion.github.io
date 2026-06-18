@@ -48,23 +48,19 @@
       text-align: center;
       color: white;
     }
-    .hero-badge {
-      display: inline-block;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      padding: 6px 20px;
-      border-radius: 20px;
-      font-size: 13px;
+    .hero-logo {
+      width: 160px;
+      height: 160px;
+      object-fit: contain;
       margin-bottom: 24px;
-      border: 1px solid rgba(255,255,255,0.3);
     }
     .hero h1 {
       font-size: 56px;
       font-weight: 800;
       margin-bottom: 8px;
       letter-spacing: 4px;
+      color: white;
     }
-    .hero h1 span { color: #D8C8EC; }
     .hero p {
       font-size: 20px;
       opacity: 0.85;
@@ -192,29 +188,30 @@
     }
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
       max-width: 1000px;
       margin: 0 auto;
     }
     .pricing-card {
-      background: white;
       border-radius: 24px;
       padding: 36px;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(167,171,222,0.2);
-      border: 2px solid transparent;
+      box-shadow: 0 4px 20px rgba(107,78,141,0.2);
+      border: 2px solid rgba(167,171,222,0.3);
       transition: transform 0.2s;
     }
     .pricing-card:hover { transform: translateY(-4px); }
+    .pricing-card.free {
+      background: rgba(167,171,222,0.25);
+      color: #2D1B4E;
+    }
     .pricing-card.popular {
-      background: linear-gradient(135deg, #A7ABDE, #6B4E8D);
+      background: rgba(107,78,141,0.5);
       color: white;
-      border-color: #6B4E8D;
-      transform: scale(1.05);
     }
     .pricing-card.premium {
-      background: linear-gradient(135deg, #2D1B4E, #4A3570);
+      background: rgba(45,27,78,0.75);
       color: white;
     }
     .plan-name {
@@ -223,7 +220,7 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-bottom: 8px;
-      opacity: 0.8;
+      opacity: 0.9;
     }
     .plan-price {
       font-size: 48px;
@@ -248,10 +245,6 @@
       align-items: center;
       gap: 8px;
     }
-    .pricing-card.popular .plan-features li,
-    .pricing-card.premium .plan-features li {
-      border-bottom-color: rgba(255,255,255,0.15);
-    }
     .btn-plan {
       display: block;
       padding: 14px;
@@ -264,8 +257,8 @@
       border: none;
     }
     .btn-free {
-      background: #F3E4F5;
-      color: #6B4E8D;
+      background: #6B4E8D;
+      color: white;
     }
     .btn-paid {
       background: white;
@@ -277,18 +270,25 @@
     }
 
     /* HOW TO BUY */
+    .howtobuy-bg {
+      background: linear-gradient(135deg, #F3E4F5, #E8DAF0);
+      padding: 80px 40px;
+    }
     .steps {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 24px;
       margin-top: 48px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .step-card {
-      background: white;
+      background: rgba(167,171,222,0.2);
       border-radius: 20px;
       padding: 28px;
       text-align: center;
-      box-shadow: 0 4px 20px rgba(167,171,222,0.2);
+      border: 1px solid rgba(107,78,141,0.2);
     }
     .step-number {
       width: 48px;
@@ -311,11 +311,11 @@
     }
     .step-card p {
       font-size: 13px;
-      color: #7B6B8D;
+      color: #6B4E8D;
       line-height: 1.5;
     }
 
-    /* CONTACT */
+    /* COMING SOON */
     .contact-bg {
       background: linear-gradient(135deg, #2D1B4E, #6B4E8D);
       padding: 80px 40px;
@@ -343,6 +343,7 @@
       text-decoration: none;
       border: 2px solid rgba(255,255,255,0.4);
       transition: all 0.2s;
+      margin-top: 8px;
     }
     .contact-email:hover { background: rgba(255,255,255,0.25); }
 
@@ -376,15 +377,18 @@
       color: #6B4E8D;
       line-height: 1.8;
       font-style: italic;
+      font-weight: bold;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       .hero h1 { font-size: 36px; }
       nav { padding: 16px 20px; }
       .nav-links { display: none; }
       section { padding: 60px 20px; }
       .stats { gap: 30px; }
-      .pricing-card.popular { transform: scale(1); }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -392,7 +396,7 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">SRIYA<span>💜</span></div>
+  <div class="nav-logo">SRIYA <span>💜</span></div>
   <div class="nav-links">
     <a href="#features">Features</a>
     <a href="#pricing">Pricing</a>
@@ -403,12 +407,13 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">🌸 Your Pregnancy Companion</div>
-  <h1>SRIYA<span>💜</span></h1>
-  <p>The most caring and complete pregnancy companion app. From week 1 to delivery — we are with you every step of the way.</p>
+  <img src="sriya_logo.png" alt="SRIYA Logo" class="hero-logo"
+    onerror="this.style.display='none'" />
+  <h1>SRIYA</h1>
+  <p>The most caring and complete pregnancy companion app. From week 1 to delivery — SRIYA is with you every step of the way.</p>
   <div class="hero-buttons">
     <a href="#download" class="btn-primary">📱 Download App</a>
-    <a href="#pricing" class="btn-secondary">💜 View Plans</a>
+    <a href="#pricing" class="btn-secondary">❤️ View Plans</a>
   </div>
 </div>
 
@@ -434,7 +439,7 @@
 
 <!-- FEATURES -->
 <section id="features">
-  <h2 class="section-title">Everything You Need 💜</h2>
+  <h2 class="section-title">Everything You Need</h2>
   <p class="section-subtitle">SRIYA supports you through every moment of your beautiful pregnancy journey</p>
   <div class="features-grid">
     <div class="feature-card">
@@ -478,7 +483,7 @@
       <p>Never miss an appointment or medication with custom notification sounds and reminders.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-icon">🌙</div>
+      <div class="feature-icon">🌑</div>
       <h3>Dark Mode</h3>
       <p>Beautiful deep dark purple theme — easy on your eyes during those late night feeds.</p>
     </div>
@@ -487,12 +492,12 @@
 
 <!-- PRICING -->
 <div class="pricing-bg" id="pricing">
-  <h2 class="section-title">Simple, Honest Pricing 💜</h2>
+  <h2 class="section-title">Simple, Honest Pricing</h2>
   <p class="section-subtitle">Choose the plan that's right for your journey</p>
   <div class="pricing-grid">
 
     <!-- Free Plan -->
-    <div class="pricing-card">
+    <div class="pricing-card free">
       <div class="plan-name">🤍 Free Plan</div>
       <div class="plan-price">$0</div>
       <div class="plan-period">Forever free</div>
@@ -552,8 +557,8 @@
 </div>
 
 <!-- HOW TO BUY -->
-<section id="how-to-buy">
-  <h2 class="section-title">How to Unlock Your Plan 💜</h2>
+<div class="howtobuy-bg" id="how-to-buy">
+  <h2 class="section-title">How to Unlock Your Plan</h2>
   <p class="section-subtitle">Simple 5-step process to unlock your premium features</p>
   <div class="steps">
     <div class="step-card">
@@ -569,7 +574,7 @@
     <div class="step-card">
       <div class="step-number">3</div>
       <h3>Contact Us</h3>
-      <p>Email us with your payment confirmation at sriyaapp@gmail.com</p>
+      <p>Email us with your payment confirmation at sriyamotherhoodcompanion@gmail.com</p>
     </div>
     <div class="step-card">
       <div class="step-number">4</div>
@@ -582,27 +587,30 @@
       <p>Enter your code in the SRIYA app to unlock all premium features!</p>
     </div>
   </div>
-</section>
+</div>
 
-<!-- DOWNLOAD -->
+<!-- COMING SOON -->
 <div class="contact-bg" id="download">
   <h2>🚀 COMING SOON!</h2>
-  <p>SRIYA is currently under active development and will be launching very soon on Android! 💜</p>
-  <p style="margin-top: 12px; font-size: 14px; opacity: 0.8;">Register your interest and be the first to know when we launch!</p>
-  <a href="mailto:sriyaapp@gmail.com?subject=SRIYA App - Notify me on Launch!" class="contact-email" style="margin-top: 24px;">
+  <p>SRIYA is currently under active development and will be launching very soon on Android!</p>
+  <p style="font-size: 14px; opacity: 0.8;">Register your interest and be the first to know when we launch!</p>
+  <a href="mailto:sriyamotherhoodcompanion@gmail.com?subject=SRIYA App - Notify me on Launch!" class="contact-email">
     📧 Notify Me on Launch!
   </a>
 </div>
+
 <!-- DEDICATION -->
 <div class="dedication">
-  <p>💖 SRIYA is lovingly dedicated to Sriya Niriella — a foster mother, a strength, and a greatest blessing. Through every storm and every struggle, she stood with unwavering love and boundless grace. Named after her, built for every mother on earth.</p>
+  <p>💖 SRIYA is lovingly dedicated to <strong>Sriya Niriella</strong> — a foster mother, a strength, and a greatest blessing. Through every storm and every struggle, she stood with unwavering love and boundless grace. Named after her, built for every mother on earth.</p>
 </div>
 
 <!-- CONTACT -->
 <div class="contact-bg" id="contact">
-  <h2>Get in Touch 💜</h2>
+  <h2>Get in Touch</h2>
   <p>Have questions? We are here to help you on your journey!</p>
-  <a href="mailto:sriyaapp@gmail.com" class="contact-email">📧 sriyaapp@gmail.com</a>
+  <a href="mailto:sriyamotherhoodcompanion@gmail.com" class="contact-email">
+    📧 sriyamotherhoodcompanion@gmail.com
+  </a>
 </div>
 
 <!-- FOOTER -->
